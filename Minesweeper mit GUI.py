@@ -20,6 +20,8 @@ import matplotlib
 from matplotlib import pyplot as plt
 from matplotlib.widgets import TextBox
 import numpy as np
+import os
+import sys, subprocess
 
 
 """Variablen Definierung Start"""
@@ -577,6 +579,13 @@ def SiegesStatisik_Erstellen(Wert):
     plt.show()  #Zeigt das Diagramm an
 
 
+"""Hier kann alles neu gestartet werden"""
+def Restart(eff):
+    root.destroy()
+    subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
+
+
+
 """Alles für die GUI Start"""
 root = tk.Tk()
 root.geometry("1170x700")
@@ -1042,10 +1051,15 @@ j9.place(x=720,y=630)
 
 hilfeButton=tk.Button(root, text = "Hilfe",name="hilfeButton", width=30,height=10,bg='white')
 hilfeButton.bind("<Button-1>", lambda eff: HilfeFeld(eff))
-hilfeButton.place(x=900,y=315)
+hilfeButton.place(x=900,y=156)
 
 timerLabel=tk.Label(root, text = "Timer",name="timerLabel", width=30,height=10,bg='white')
 timerLabel.place(x=900,y=0)
+
+restart=tk.Button(root, text = "restart",name="restart", width=30,height=10,bg='white')
+restart.bind("<Button-1>", lambda eff: Restart(eff))
+restart.place(x=900,y=500)
+
 
 global Buttonsystem
 Buttonsystem = [a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,
@@ -1058,7 +1072,7 @@ Buttonsystem = [a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,
                h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,
                i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,
                j0,j1,j2,j3,j4,j5,j6,j7,j8,j9, 
-               hilfeButton, timerLabel]
+               hilfeButton, timerLabel, restart]
 
 global ButtonsystemStr
 ButtonsystemStr = ["a0","a1","a2","a3","a4","a5","a6","a7","a8","a9",
