@@ -20,6 +20,17 @@ import matplotlib
 from matplotlib import pyplot as plt
 from matplotlib.widgets import TextBox
 import numpy as np
+import os
+import sys, subprocess
+
+
+"""Alles hier in eine Funktion und ein Button um diese Funktion 
+abzurufen bis der Button nochmal gedrückt wird, um zu restarten.
+TODO:
+- Testen, ob man Funktionen in Funktionen aufrufen kann
+- Alle 
+
+"""
 
 
 """Variablen Definierung Start"""
@@ -592,6 +603,12 @@ def Print_All(eff):
     Aufgedeckt_Gewinn_Test("A1")
 
 
+"""Hier kann alles neu gestartet werden"""
+def Restart(eff):
+    root.destroy()
+    subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
+
+
 """Alles für die GUI Start"""
 root = tk.Tk()
 root.geometry("1170x700")
@@ -1066,6 +1083,10 @@ printall=tk.Button(root, text = "Print All",name="printall", width=30,height=10,
 printall.bind("<Button-1>", lambda eff: Print_All(eff))
 printall.place(x=900,y=500)
 
+restart=tk.Button(root, text = "restart",name="restart", width=30,height=8,bg='white')
+restart.bind("<Button-1>", lambda eff: Restart(eff))
+restart.place(x=900,y=170)
+
 global Buttonsystem
 Buttonsystem = [a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,
                b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,
@@ -1077,7 +1098,7 @@ Buttonsystem = [a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,
                h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,
                i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,
                j0,j1,j2,j3,j4,j5,j6,j7,j8,j9, 
-               hilfeButton, timerLabel, printall]
+               hilfeButton, timerLabel, printall, restart]
 
 global ButtonsystemStr
 ButtonsystemStr = ["a0","a1","a2","a3","a4","a5","a6","a7","a8","a9",
@@ -1119,7 +1140,10 @@ root.mainloop()
 """Alles "für die GUI Ende"""
 
 
+
+
+
+
 """Todos:
-Restart Button
 Highscore Save
 """
